@@ -44,6 +44,7 @@ export default function Home() {
             position="absolute"
             marginTop="2.25rem"
             right="280"
+            display={{ base: "none", xl: "inherit" }}
           />
         </Flex>
       </Flex>
