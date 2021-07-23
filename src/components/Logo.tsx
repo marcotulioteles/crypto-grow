@@ -1,16 +1,22 @@
 import { Flex, Icon, Text } from "@chakra-ui/react";
 import { FaBitcoin } from "react-icons/fa";
 
-export function Logo() {
+type LogoProps = {
+  logoColor: string;
+  __marginTop: string;
+}
+
+export function Logo({ logoColor, __marginTop }: LogoProps) {
   return (
     <Flex
       alignItems="center"
+      marginTop={__marginTop}
     >
       <Icon
         as={FaBitcoin}
         width={14}
         height={14}
-        color="orange.400"
+        color={logoColor}
       />
       <Text
         as="h1"

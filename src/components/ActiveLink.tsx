@@ -7,7 +7,9 @@ interface ActiveLinkProps extends LinkProps {
   children: ReactElement;
   shouldMatchExactHref?: boolean;
   colorText: string;
-  bgColorLink: string;
+  bgColorLink?: string;
+  colorGradient1?: string;
+  colorGradient2?: string;
   borderTypeLink?: string;
   borderColorLink?: string;
 }
@@ -18,7 +20,9 @@ export function ActiveLink({
   colorText,
   bgColorLink,
   borderTypeLink,
-  borderColorLink, 
+  borderColorLink,
+  colorGradient1,
+  colorGradient2, 
   ...rest }: ActiveLinkProps) {
 
   const { asPath } = useRouter()
@@ -39,6 +43,7 @@ export function ActiveLink({
       {cloneElement(children, {
         color: isActive ? `${colorText}` : "purple.400",
         bgColor: isActive ? `${bgColorLink}` : "",
+        bgGradient: isActive ? `linear(to-r, ${colorGradient1}, ${colorGradient2})` : "",
         borderRadius: "12px",
         border: isActive ? `${borderTypeLink}` : "",
         borderColor: isActive ? `${borderColorLink}` : ""

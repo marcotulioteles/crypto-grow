@@ -16,6 +16,7 @@ export const theme = extendTheme({
       "700": "#212245",
     },
     purple: {
+      "100": "#D72CEE",
       "300": "#4B4D9F",
       "400": "#56548F",
     },
@@ -33,7 +34,7 @@ export const theme = extendTheme({
   styles: {
     global: {
       body: {
-        bgGradient: "linear(to-r, gray.900, gray.700)",
+        background: "gray.700",
         color: "purple.400"
       }
     }

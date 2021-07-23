@@ -20,6 +20,7 @@ export default function Home() {
             width="calc(1020px + (100vw - 1200px)/2)"
             height="495px"
             marginLeft="calc((-100vw + 1200px)/2)"
+            flexDirection="column"
             alignItems="center"
             justifyContent="center"
             bgColor="gray.900"
@@ -38,6 +39,11 @@ export default function Home() {
               >
                 easy peasy
               </Text> with us</Text>
+              <Text
+                fontSize="1.25rem"
+                color="white"
+              >Buy and sell bitcoins and other crypto coins with no efforts 
+                like <br/>we do with any other currency.</Text>
           </Flex>
           <Image 
             src="/images/bitcoin-coins.png"

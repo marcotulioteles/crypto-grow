@@ -13,7 +13,10 @@ export function Header() {
       alignItems="center"
       justifyContent="space-between"
     >
-      <Logo />
+      <Logo 
+        logoColor="orange.400"
+        __marginTop=""
+      />
       <Flex
         as="nav"
         height={20}
@@ -21,11 +24,45 @@ export function Header() {
         borderColor="purple.300"
         borderRadius="12px"
       >
-        <NavLink href="/">HOME</NavLink>
-        <NavLink href="/about" marginLeft={4}>ABOUT US</NavLink>
-        <NavLink href="/services" marginLeft={4}>SERVICES</NavLink>
-        <NavLink href="/signup" marginLeft={4}>SIGN UP</NavLink>
-        <NavLink href="/signin" marginLeft={4}>SIGN IN</NavLink>
+        <NavLink 
+          href="/"
+          _colorText='gray.50'
+          _bgColorLink='gray.900'
+          _borderColorLink='purple.300'
+          _borderTypeLink='1px solid'
+        >HOME</NavLink>
+        <NavLink 
+          href="#" 
+          marginLeft={4}
+          _colorText='gray.50'
+          _bgColorLink='gray.900'
+          _borderColorLink='purple.300'
+          _borderTypeLink='1px solid'
+        >ABOUT US</NavLink>
+        <NavLink 
+          href="#" 
+          marginLeft={4}
+          _colorText='gray.50'
+          _bgColorLink='gray.900'
+          _borderColorLink='purple.300'
+          _borderTypeLink='1px solid'
+          >SERVICES</NavLink>
+        <NavLink 
+          href="/signup" 
+          marginLeft={4}
+          _colorText='gray.50'
+          _bgColorLink='gray.900'
+          _borderColorLink='purple.300'
+          _borderTypeLink='1px solid'
+        >SIGN UP</NavLink>
+        <NavLink 
+          href="/signin" 
+          marginLeft={4}
+          _colorText='gray.50'
+          _bgColorLink='gray.900'
+          _borderColorLink='purple.300'
+          _borderTypeLink='1px solid'
+        >SIGN IN</NavLink>
       </Flex>
     </Flex>
   );

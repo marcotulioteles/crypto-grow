@@ -1,6 +1,7 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Text, Input, Icon, Button } from "@chakra-ui/react";
 import { Header } from "../components/Header";
-import { Input } from "../components/Form/Input"
+import { FiUser, FiMail, FiLock } from "react-icons/fi"
+import { CustomizedInput } from "../components/Form/Input";
 
 export default function SignUp() {
   return (
@@ -29,21 +30,62 @@ export default function SignUp() {
           >
             New <br/> Account
           </Text>
-          <Flex 
-            as="label"
+          <CustomizedInput
+            __marginTop="42px"
+            icon={FiUser}
+            name="name"
+            id="name"
+            type="text"
+            placeholder="name"
+            __color="white"
+            __height="60px"
+            __width="320px"
+          />
+          <CustomizedInput
+            __marginTop="42px"
+            icon={FiMail}
+            name="email"
+            id="email"
+            type="email"
+            placeholder="email"
+            __color="white"
+            __height="60px"
+            __width="320px"
+          />
+          <CustomizedInput
+            type="password"
+            name="password"
+            id="password"
+            icon={FiLock}
+            placeholder="password"
+            __marginTop="42px"
+            __color="white"
+            __height="60px"
+            __width="320px"
+          />
+          <CustomizedInput
+            type="password"
+            name="retype password"
+            id="password"
+            icon={FiLock}
+            placeholder="retype password"
+            __marginTop="42px"
+            __color="white"
+            __height="60px"
+            __width="320px"
+          />
+          <Button
             width="320px"
-            height="60px"
-            backgroundColor="gray.700"
-            borderRadius="12px"
-            border="1px solid"
-            borderColor="purple.300"
+            height="72px"
+            fontSize="1.5rem"
+            borderRadius="36px"
+            bgGradient="linear(to-r, pink.700, gray.700)"
+            color="white"
+            marginTop="42px"
+            variant="unstyled"
           >
-            <Input 
-              name={"name"}
-              placeholder="name"
-              width="320px"
-            />  
-          </Flex>
+            SIGN UP
+          </Button>
         </Flex>
       </Flex>
     </>
