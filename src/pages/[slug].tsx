@@ -2,9 +2,11 @@ import { Flex } from "@chakra-ui/react";
 import { useRouter } from "next/dist/client/router";
 import { FaBitcoin } from "react-icons/fa";
 import { CardCoins } from "../components/CardCoins";
+import { ExchangePanel } from "../components/ExchangePanel";
 import { Header } from "../components/Header";
 import { Panel } from "../components/Panel";
 import { Sidebar } from "../components/Sidebar";
+import { TableTransactions } from "../components/TableTransactions";
 
 export default function UserPanel() {
   const { asPath } = useRouter()
@@ -46,7 +48,9 @@ export default function UserPanel() {
                   letters_brand="BRI"
                   _bgColor="purple.100"
                 />
-              </> : ""
+              </> : (asPath === "/userpanel-transactions") ?
+                <TableTransactions /> : (asPath === "/userpanel-exchange_and_sale") ?
+                <ExchangePanel /> : "" 
             )}
           </Panel>
         </Flex>
