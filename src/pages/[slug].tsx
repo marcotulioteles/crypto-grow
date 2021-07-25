@@ -10,7 +10,6 @@ import { TableTransactions } from "../components/TableTransactions";
 
 export default function UserPanel() {
   const { asPath } = useRouter()
-
   return (
     <>
       <Header />

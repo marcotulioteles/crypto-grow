@@ -32,6 +32,7 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> =
           border="1px solid"
           borderColor="purple.300"
           alignItems="center"
+          justifyContent="flex-end"
           position="relative"
         >
           {icon ?
@@ -41,6 +42,7 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> =
               height="1.5rem"
               marginLeft="12px"
               position="absolute"
+              left="0"
             /> : ''
           }
           <ChakraInput
@@ -49,10 +51,10 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> =
             placeholder={name}
             type={type}
             variant="unstyled"
-            textAlign="center"
+            textAlign="justify"
             color={__color}
-            _placeholder={{ color: "purple.400" }}
-            flex="1"
+            _placeholder={{ color: "purple.400", marginLeft: "32px", textAlign: "center"}}
+            width="87.5%"
             ref={ref}
             {...rest}
           />
