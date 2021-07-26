@@ -1,9 +1,43 @@
-import { Box, Button, Flex, Grid } from "@chakra-ui/react";
+import { Flex, Input } from "@chakra-ui/react";
+import { useCallback, useState } from "react";
+
+import { IState } from "../store";
 import { FaBitcoin } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { exchangeCurrencyTransaction } from "../store/modules/wallet/actions";
+
 import { CardCoins } from "./CardCoins";
-import { CustomizedInput } from "./Form/Input";
+import { IWalletCoin } from "../store/modules/wallet/types";
+import { FormTransactions } from "./Form/FormTransactions";
+import { useCurrencyInfo } from "../contexts/CurrencyInfoContext";
 
 export function ExchangePanel() {
+  const myWallet = useSelector<IState, IWalletCoin[]>(state => state.wallet.coins)
+
+  const dispatch = useDispatch();
+
+  const [bitcoinToBritaValue, setBitcoinToBritaValue] = useState(0);
+  const [britaToBitcoinValue, setBritaToBitcoinValue] = useState(0);
+  const [bitcoinSaleValue, setBitcoinSaleValue] = useState(0);
+  const [britaSaleValue, setBritaSaleValue] = useState(0);
+  const [buyBritaValue, setBuyBritaValue] = useState(0);
+  const [buyBitcoinValue, setBuyBitcoinValue] = useState(0);
+
+  const [transactionError, setTransactionError] = useState(false)
+  const [transactionErrorMessage, setTransactionErrorMessage] = useState("")
+
+  const { bitcoinPrice, dolar } = useCurrencyInfo()
+
+  const handleReset = () => {
+    Array.from(document.querySelectorAll("input")).forEach(
+      input => (input.value = "")
+    );
+  }
+
+  const handleExchangeCurrencyTransaction = useCallback((coin1: IWalletCoin, coin2: IWalletCoin) => {
+    dispatch(exchangeCurrencyTransaction(coin1, coin2))
+  }, [dispatch])
+
   return (
     <Flex
       width="100%"
@@ -16,100 +50,191 @@ export function ExchangePanel() {
       >
         <CardCoins
           icon={FaBitcoin}
-          amount="128,5616,82"
-          brand="Bitcoin"
-          letters_brand="BTC"
+          amount={myWallet[0].amount.toFixed(6).toString()}
+          brand={myWallet[0].name}
+          letters_brand={myWallet[0].brand}
           _bgColor="orange.400"
         />
         <CardCoins
           icon={FaBitcoin}
-          amount="97,1533,82"
-          brand="Brita"
-          letters_brand="BRI"
+          amount={myWallet[1].amount.toFixed(6).toString()}
+          brand={myWallet[1].name}
+          letters_brand={myWallet[1].brand}
           _bgColor="purple.100"
         />
       </Flex>
-      <Flex alignItems="center">
-        <Flex
-          as="form"
-          width="420px"
-          height="420px"
-          backgroundColor="gray.900"
-          borderRadius="1.125rem"
-          flexDirection="column"
-          alignItems="center"
-        >
-          <CustomizedInput
-            __marginTop="36px"
-            name="email"
-            id="email"
-            type="email"
-            placeholder="email"
-            __color="white"
-            __height="60px"
-            __width="320px"
-          />
-          <Grid
-            templateColumns="1fr 1fr"
-            marginTop="36px"
-            columnGap="36px"
-          >
-            <CustomizedInput
-              type="password"
-              name="password"
-              id="password"
-              placeholder="password"
-              __color="white"
-              __height="60px"
-              __width="140px"
-            />
-            <CustomizedInput
-              type="password"
-              name="password"
-              id="password"
-              placeholder="password"
-              __color="white"
-              __height="60px"
-              __width="140px"
-            />
-          </Grid>
-          <Grid
-            templateColumns="1fr 1fr"
-            marginTop="36px"
-            columnGap="36px"
-          >
-            <CustomizedInput
-              type="password"
-              name="password"
-              id="password"
-              placeholder="password"
-              __color="white"
-              __height="60px"
-              __width="140px"
-            />
-            <CustomizedInput
-              type="password"
-              name="password"
-              id="password"
-              placeholder="password"
-              __color="white"
-              __height="60px"
-              __width="140px"
-            />
-          </Grid>
-          <Button
-            width="320px"
-            height="72px"
-            fontSize="1.35rem"
-            borderRadius="36px"
-            bgGradient="linear(to-r, pink.700, gray.700)"
+      <Flex
+        flexDirection="column"
+        justifyContent="space-around"
+        alignItems="center"
+        width="320px"
+      >
+        <FormTransactions
+          name="EXCHANGE BITCOIN TO BRITA"
+          placeholder="BTC"
+          onClickFunction={() => {
+            handleExchangeCurrencyTransaction({
+              id: 1,
+              name: "bitcoin",
+              brand: "BTC",
+              amount: myWallet[0].amount - bitcoinToBritaValue,
+            },
+              {
+                id: 2,
+                name: "brita",
+                brand: "BRI",
+                amount: myWallet[1].amount + (bitcoinToBritaValue * bitcoinPrice),
+              })
+
+              handleReset()
+          }}
+          children={<Input
+            placeholder="BTC"
+            type="number"
             color="white"
-            marginTop="36px"
-            variant="unstyled"
-          >
-            SUBMIT TRANSACTION
-          </Button>
-        </Flex>
+            width="120px"
+            onChange={event => { 
+              setBitcoinToBritaValue(parseFloat(event.target.value)) 
+            }}
+          />}
+        />
+        <FormTransactions
+          name="EXCHANGE BRITA TO BITCOIN"
+          placeholder="BRI"
+          onClickFunction={() => {
+            handleExchangeCurrencyTransaction({
+              id: 1,
+              name: "bitcoin",
+              brand: "BTC",
+              amount: myWallet[0].amount + (britaToBitcoinValue / bitcoinPrice),
+            },
+              {
+                id: 2,
+                name: "brita",
+                brand: "BRI",
+                amount: myWallet[1].amount - britaToBitcoinValue,
+              })
+
+              handleReset()
+          }}
+          children={<Input
+            placeholder="BRI"
+            type="number"
+            color="white"
+            width="120px"
+            onChange={event => { 
+              setBritaToBitcoinValue(parseFloat(event.target.value)) 
+            }}
+          />}
+        />
+        <FormTransactions
+          name="SALE BITCOIN"
+          placeholder="BTC"
+          onClickFunction={() => {
+            handleExchangeCurrencyTransaction({
+              id: 1,
+              name: "bitcoin",
+              brand: "BTC",
+              amount: myWallet[0].amount - bitcoinSaleValue,
+            },
+              {
+                id: 3,
+                name: "mywallet",
+                brand: "R$",
+                amount: myWallet[2].amount + (bitcoinSaleValue * bitcoinPrice) / dolar,
+              })
+
+              handleReset()
+          }}
+          children={<Input
+            placeholder="BTC"
+            type="number"
+            color="white"
+            width="120px"
+            onChange={event => { setBitcoinSaleValue(parseFloat(event.target.value)) }}
+          />}
+        />
+        <FormTransactions
+          name="SALE BRITA"
+          placeholder="BRI"
+          onClickFunction={() => {
+            handleExchangeCurrencyTransaction({
+              id: 2,
+              name: "brita",
+              brand: "BRI",
+              amount: myWallet[1].amount - britaSaleValue,
+            },
+              {
+                id: 3,
+                name: "mywallet",
+                brand: "R$",
+                amount: myWallet[2].amount + (britaSaleValue * dolar),
+              })
+
+              handleReset()
+          }}
+          children={<Input
+            placeholder="BRI"
+            type="number"
+            color="white"
+            width="120px"
+            onChange={event => { setBritaSaleValue(parseFloat(event.target.value)) }}
+          />}
+        />
+        <FormTransactions
+          name="BUY BITCOIN"
+          placeholder="R$"
+          onClickFunction={() => {
+            handleExchangeCurrencyTransaction({
+              id: 1,
+              name: "bitcoin",
+              brand: "BTC",
+              amount: myWallet[0].amount + ((buyBitcoinValue / dolar) / bitcoinPrice),
+            },
+              {
+                id: 3,
+                name: "mywallet",
+                brand: "R$",
+                amount: myWallet[2].amount - buyBitcoinValue,
+              })
+
+              handleReset()
+          }}
+          children={<Input
+            placeholder="R$"
+            type="number"
+            color="white"
+            width="120px"
+            onChange={event => { setBuyBitcoinValue(parseFloat(event.target.value)) }}
+          />}
+        />
+        <FormTransactions
+          name="BUY BRITA"
+          placeholder="R$"
+          onClickFunction={() => {
+            handleExchangeCurrencyTransaction({
+              id: 2,
+              name: "brita",
+              brand: "BRI",
+              amount: myWallet[1].amount + (buyBritaValue / dolar),
+            },
+              {
+                id: 3,
+                name: "mywallet",
+                brand: "R$",
+                amount: myWallet[2].amount - buyBritaValue,
+              })
+
+              handleReset()
+          }}
+          children={<Input
+            placeholder="R$"
+            type="number"
+            color="white"
+            width="120px"
+            onChange={event => { setBuyBritaValue(parseFloat(event.target.value)) }}
+          />}
+        />
       </Flex>
     </Flex>
   )

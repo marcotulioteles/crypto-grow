@@ -1,6 +1,8 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import { useRouter } from "next/dist/client/router";
+
 import { FaBitcoin } from "react-icons/fa";
+
 import { CardCoins } from "../components/CardCoins";
 import { ExchangePanel } from "../components/ExchangePanel";
 import { Header } from "../components/Header";
@@ -8,11 +10,24 @@ import { Panel } from "../components/Panel";
 import { Sidebar } from "../components/Sidebar";
 import { TableTransactions } from "../components/TableTransactions";
 
+import { useSelector } from "react-redux";
+import { IState } from "../store";
+
 export default function UserPanel() {
+  const myWallet = useSelector<IState>(state => state.wallet.coins)
+
   const { asPath } = useRouter()
   return (
     <>
       <Header />
+      <Flex
+        marginLeft="240px"
+      >
+        <Text
+          color="white"
+          fontSize="2rem"
+        >R$ {myWallet[2].amount.toFixed(2)}</Text>
+      </Flex>
       <Flex
         as="main"
         width="100vw"
@@ -34,17 +49,17 @@ export default function UserPanel() {
                   icon={FaBitcoin}
                   _marginTop="56px"
                   _marginLeft="105px"
-                  amount="128,5616,82"
-                  brand="Bitcoin"
-                  letters_brand="BTC"
+                  amount={myWallet[0].amount}
+                  brand={myWallet[0].name}
+                  letters_brand={myWallet[0].brand}
                   _bgColor="orange.400"
                 />
                 <CardCoins
                   icon={FaBitcoin}
                   _marginTop="284px"
-                  amount="97,1533,82"
-                  brand="Brita"
-                  letters_brand="BRI"
+                  amount={myWallet[1].amount}
+                  brand={myWallet[1].name}
+                  letters_brand={myWallet[1].brand}
                   _bgColor="purple.100"
                 />
               </> : (asPath === "/userpanel-transactions") ?

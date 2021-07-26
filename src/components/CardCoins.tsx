@@ -1,5 +1,6 @@
 import { Flex, Icon, Text } from "@chakra-ui/react";
 import { ElementType } from "react";
+import { useSelector } from "react-redux";
 
 interface CardCoinsProps {
   icon: ElementType;
@@ -12,7 +13,7 @@ interface CardCoinsProps {
 }
 
 export function CardCoins({ icon, _marginLeft, _marginTop, amount, brand, letters_brand, _bgColor}: CardCoinsProps) {
-  return (
+   return (
     <Flex
       width="320px"
       height="160px"
