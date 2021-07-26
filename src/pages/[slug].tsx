@@ -21,20 +21,50 @@ export default function UserPanel() {
     <>
       <Header />
       <Flex
-        marginLeft="240px"
-      >
-        <Text
-          color="white"
-          fontSize="2rem"
-        >R$ {myWallet[2].amount.toFixed(2)}</Text>
-      </Flex>
-      <Flex
         as="main"
         width="100vw"
         height="calc(100vh - 100px)"
         alignItems="center"
         justifyContent="center"
+        flexDirection="column"
       >
+        <Flex
+          width="1200px"
+          height="auto"
+        >
+          <Flex
+            width="280px"
+            height="180px"
+            border="1px solid"
+            borderColor="purple.300"
+            borderRadius="12px"
+            marginTop="32px"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Text 
+              color="white"
+              fontSize="1.25rem"
+              fontWeight="normal"
+              textAlign="center"
+            >YOUR BALLANCE <br/>ACCOUNT</Text>
+            <Flex
+              width="240px"
+              height="40px"
+              borderRadius="20px"
+              backgroundColor="gray.900"
+              alignItems="center"
+              justifyContent="center"
+              marginTop="28px"
+            >
+              <Text
+                color="green.400"
+                fontSize="1.125rem"
+              >R$ {myWallet[2].amount.toFixed(2)}</Text>
+            </Flex>
+          </Flex>
+        </Flex>
         <Flex
           width="1200px"
           height="calc(100vh - 100px)"

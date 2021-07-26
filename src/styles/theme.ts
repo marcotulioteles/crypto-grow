@@ -26,6 +26,9 @@ export const theme = extendTheme({
     pink: {
       "700": "#FF3180"
     },
+    green: {
+      "400": "#24E22D"
+    }
   },
   fonts: {
     heading: "Poppins",

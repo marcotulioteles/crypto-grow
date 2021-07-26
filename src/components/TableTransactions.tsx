@@ -13,7 +13,7 @@ export function TableTransactions() {
       variant="unstyled"
       width="90%"
       marginLeft="50px"
-      marginTop="50px"
+      marginTop="24px"
       size="sm"
     >
       <Thead>
@@ -30,11 +30,11 @@ export function TableTransactions() {
         {myTransactions.map(transaction => (
           <Tr key={transaction.id} height="2rem">
             <Td textAlign="center">{transaction.date}</Td>
-            <Td textAlign="center" color="purple.100">{transaction.type}</Td>
+            <Td textAlign="center" color={(transaction.type === "SALE") ? "green.400" : "orange.400"}>{transaction.type}</Td>
             <Td textAlign="center">{transaction.currency_debit}</Td>
             <Td textAlign="center">{transaction.currency_credit}</Td>
-            <Td textAlign="center" color="pink.500">{transaction.currency_debit} {transaction.withdraw.toFixed(5)}</Td>
-            <Td textAlign="center" color="green.500">{transaction.currency_credit} {transaction.deposit.toFixed(5)}</Td>
+            <Td textAlign="center" color="pink.700">{transaction.currency_debit} {transaction.withdraw.toFixed(5)}</Td>
+            <Td textAlign="center" color="green.400">{transaction.currency_credit} {transaction.deposit.toFixed(5)}</Td>
           </Tr>
         ))}
       </Tbody>
