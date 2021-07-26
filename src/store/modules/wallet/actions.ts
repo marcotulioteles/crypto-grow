@@ -1,4 +1,4 @@
-import { IWalletCoin, IWalletState } from "./types";
+import { IWalletCoin } from "./types";
 
 export function exchangeCurrencyTransaction(coin1: IWalletCoin, coin2: IWalletCoin) {
   return {

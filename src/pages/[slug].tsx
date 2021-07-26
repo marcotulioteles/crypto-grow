@@ -49,7 +49,7 @@ export default function UserPanel() {
                   icon={FaBitcoin}
                   _marginTop="56px"
                   _marginLeft="105px"
-                  amount={myWallet[0].amount}
+                  amount={myWallet[0].amount.toFixed(6)}
                   brand={myWallet[0].name}
                   letters_brand={myWallet[0].brand}
                   _bgColor="orange.400"
@@ -57,7 +57,7 @@ export default function UserPanel() {
                 <CardCoins
                   icon={FaBitcoin}
                   _marginTop="284px"
-                  amount={myWallet[1].amount}
+                  amount={myWallet[1].amount.toFixed(6)}
                   brand={myWallet[1].name}
                   letters_brand={myWallet[1].brand}
                   _bgColor="purple.100"

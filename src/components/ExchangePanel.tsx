@@ -10,12 +10,14 @@ import { CardCoins } from "./CardCoins";
 import { IWalletCoin } from "../store/modules/wallet/types";
 import { FormTransactions } from "./Form/FormTransactions";
 import { useCurrencyInfo } from "../contexts/CurrencyInfoContext";
+import { ITransaction } from "../store/modules/transactions_report/types";
+import { registerTransaction } from "../store/modules/transactions_report/actions";
 
 export function ExchangePanel() {
   const myWallet = useSelector<IState, IWalletCoin[]>(state => state.wallet.coins)
 
   const dispatch = useDispatch();
-
+  
   const [bitcoinToBritaValue, setBitcoinToBritaValue] = useState(0);
   const [britaToBitcoinValue, setBritaToBitcoinValue] = useState(0);
   const [bitcoinSaleValue, setBitcoinSaleValue] = useState(0);
@@ -36,6 +38,10 @@ export function ExchangePanel() {
 
   const handleExchangeCurrencyTransaction = useCallback((coin1: IWalletCoin, coin2: IWalletCoin) => {
     dispatch(exchangeCurrencyTransaction(coin1, coin2))
+  }, [dispatch])
+  
+  const handleSendTransactionToReport = useCallback((transaction: ITransaction ) => {
+    dispatch(registerTransaction(transaction))
   }, [dispatch])
 
   return (
@@ -87,6 +93,16 @@ export function ExchangePanel() {
               })
 
               handleReset()
+
+              handleSendTransactionToReport({
+                id: Date.now(),
+                date: Date.now(),
+                type: "Exchange",
+                currency_debit: "BTC",
+                currency_credit: "BRI",
+                deposit: bitcoinToBritaValue * bitcoinPrice,
+                withdraw: bitcoinToBritaValue,
+              })
           }}
           children={<Input
             placeholder="BTC"
@@ -115,7 +131,17 @@ export function ExchangePanel() {
                 amount: myWallet[1].amount - britaToBitcoinValue,
               })
 
-              handleReset()
+            handleReset()
+
+            handleSendTransactionToReport({
+              id: Date.now(),
+              date: Date.now(),
+              type: "Exchange",
+              currency_debit: "BRI",
+              currency_credit: "BTC",
+              deposit: britaToBitcoinValue / bitcoinPrice,
+              withdraw: britaToBitcoinValue,
+            })
           }}
           children={<Input
             placeholder="BRI"
@@ -144,7 +170,17 @@ export function ExchangePanel() {
                 amount: myWallet[2].amount + (bitcoinSaleValue * bitcoinPrice) / dolar,
               })
 
-              handleReset()
+            handleReset()
+
+            handleSendTransactionToReport({
+              id: Date.now(),
+              date: Date.now(),
+              type: "SALE",
+              currency_debit: "BTC",
+              currency_credit: "R$",
+              deposit: (bitcoinSaleValue * bitcoinPrice) / dolar,
+              withdraw: bitcoinSaleValue,
+            })
           }}
           children={<Input
             placeholder="BTC"
@@ -171,7 +207,17 @@ export function ExchangePanel() {
                 amount: myWallet[2].amount + (britaSaleValue * dolar),
               })
 
-              handleReset()
+            handleReset()
+
+            handleSendTransactionToReport({
+              id: Date.now(),
+              date: Date.now(),
+              type: "SALE",
+              currency_debit: "BRI",
+              currency_credit: "R$",
+              deposit: (britaSaleValue * dolar),
+              withdraw: britaSaleValue,
+            })
           }}
           children={<Input
             placeholder="BRI"
@@ -198,7 +244,17 @@ export function ExchangePanel() {
                 amount: myWallet[2].amount - buyBitcoinValue,
               })
 
-              handleReset()
+            handleReset()
+
+            handleSendTransactionToReport({
+              id: Date.now(),
+              date: Date.now(),
+              type: "Exchange",
+              currency_debit: "R$",
+              currency_credit: "BTC",
+              deposit: ((buyBitcoinValue / dolar) / bitcoinPrice),
+              withdraw: buyBitcoinValue,
+            })
           }}
           children={<Input
             placeholder="R$"
@@ -225,7 +281,17 @@ export function ExchangePanel() {
                 amount: myWallet[2].amount - buyBritaValue,
               })
 
-              handleReset()
+            handleReset()
+
+            handleSendTransactionToReport({
+              id: Date.now(),
+              date: Date.now(),
+              type: "Exchange",
+              currency_debit: "R$",
+              currency_credit: "BRI",
+              deposit: (buyBritaValue / dolar),
+              withdraw: buyBritaValue,
+            })
           }}
           children={<Input
             placeholder="R$"

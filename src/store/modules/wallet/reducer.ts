@@ -29,6 +29,7 @@ const wallet: Reducer<IWalletState> = (state = INITIAL_STATE, action) => {
   return produce(state, draft => {
     switch(action.type) {
       case 'EXCHANGE_CURRENCY_TRANSACTION': {
+        
         const updatedCoins = state.coins.map(coin => {
           const found = action.payload.find((element: { id: number; }) => element.id === coin.id);
           return found ? found : coin;
