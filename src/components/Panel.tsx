@@ -34,6 +34,7 @@ export function Panel({ title, children }: PanelProps) {
         backgroundColor="gray.900"
         borderRadius="18px"
         overflowY={(myTransactions.length > 8 && asPath === "/userpanel-transactions") ? "scroll" : "inherit"}
+        overflowX="auto"
         flexDirection={{ base: "column", lg: "row" }}
         alignItems={{ base: "center", lg:"center" }}
         justifyContent={{ base: "center", lg:"space-around" }}

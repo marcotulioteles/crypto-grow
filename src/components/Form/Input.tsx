@@ -51,10 +51,10 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> =
             placeholder={name}
             type={type}
             variant="unstyled"
-            textAlign="justify"
+            textAlign="center"
             color={__color}
-            _placeholder={{ color: "purple.400", marginLeft: "32px", textAlign: "center"}}
-            width="87.5%"
+            _placeholder={{ color: "purple.400", textAlign: "center"}}
+            flex="1"
             ref={ref}
             {...rest}
           />

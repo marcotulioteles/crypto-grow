@@ -21,3 +21,8 @@ export function getFormattedDate(date: Date) {
 
   return month + '-' + day + '-' + year;
 } 
+
+export function convertNumberToDate(date: number) {
+  const newDate = new Date(date)
+  return newDate
+}

@@ -2,6 +2,7 @@ import { Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { IState } from "../store";
 import { ITransaction } from "../store/modules/transactions_report/types";
+import { convertNumberToDate, getFormattedDate } from "../utils/Functions";
 
 export function TableTransactions() {
   const myTransactions = useSelector<IState, ITransaction[]>(state => state.transactions_report.transactions)
@@ -12,9 +13,8 @@ export function TableTransactions() {
     <Table
       variant="unstyled"
       width="90%"
-      marginLeft="50px"
-      marginTop="24px"
       size="sm"
+      margin="24px"
     >
       <Thead>
         <Tr color="white">
@@ -29,7 +29,7 @@ export function TableTransactions() {
       <Tbody>
         {myTransactions.map(transaction => (
           <Tr key={transaction.id} height="2rem">
-            <Td textAlign="center">{transaction.date}</Td>
+            <Td textAlign="center">{getFormattedDate(convertNumberToDate(transaction.date))}</Td>
             <Td textAlign="center" color={(transaction.type === "SALE") ? "green.400" : "orange.400"}>{transaction.type}</Td>
             <Td textAlign="center">{transaction.currency_debit}</Td>
             <Td textAlign="center">{transaction.currency_credit}</Td>
