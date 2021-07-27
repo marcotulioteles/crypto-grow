@@ -1,7 +1,6 @@
 import { Flex } from '@chakra-ui/react'
 import { DrawerNavSideBar } from './DrawerNavSideBar';
 import { Logo } from './Logo';
-import { NavLink } from './NavLink';
 
 export function Header() {
  

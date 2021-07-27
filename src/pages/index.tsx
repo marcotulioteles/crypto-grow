@@ -46,6 +46,7 @@ export default function Home() {
           </Flex>
           <Image 
             src="/images/bitcoin-coins.png"
+            alt="bitcoins"
             position="absolute"
             marginTop="2.25rem"
             right="280"

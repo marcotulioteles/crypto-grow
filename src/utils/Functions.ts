@@ -5,13 +5,14 @@ export function getFormattedDate(date: Date) {
   month = month.length > 1 ? month : '0' + month;
 
   const dayOfTheWeek = date.getDay();
+  const currentHour = date.getHours();
 
   let day = date.getDate().toString();
 
   if (dayOfTheWeek == 0) {
     const dayParse = parseInt(day) - 2
     day = day.length > 1 ? dayParse.toString() : '0' + dayParse.toString();
-  } else if (dayOfTheWeek == 6) {
+  } else if (dayOfTheWeek == 6 || currentHour <= 10) {
     const dayParse = parseInt(day) - 1
     day = day.length > 1 ? dayParse.toString() : '0' + dayParse.toString();
   } else {

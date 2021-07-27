@@ -4,7 +4,6 @@ import { ActiveLink } from "./ActiveLink";
 
 interface NavLinkProps extends ChakraLinkProps {
   icon?: ElementType;
-  children: string;
   href: string
   _colorText: string;
   _bgColorLink?: string;
@@ -46,15 +45,8 @@ export function NavLink(
         paddingY={{ base: "24px", lg: "inherit" }}
         {...rest}
       >
-        { icon ? <Icon as={icon} fontSize="1.625rem"/> : "" }
-        <Text 
-          marginLeft={icon ? "4" : ""} 
-          fontWeight="medium" 
-          letterSpacing="5%"
-          textAlign="center"
-        >
-          { children }
-        </Text>
+        { icon ? <Icon as={icon} fontSize="1.625rem" marginRight="24px"/> : "" }
+        { children }
       </ChakraLink>
     </ActiveLink>
   )
