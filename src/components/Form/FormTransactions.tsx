@@ -16,7 +16,9 @@ export function FormTransactions({ name, children, onClickFunction }: FormTransa
         marginTop="0.5rem"
         justifyContent="space-around"
       >
-        {children}
+        <>
+          {children}
+        </>
         <Button
           width="150px"
           textTransform="uppercase"
