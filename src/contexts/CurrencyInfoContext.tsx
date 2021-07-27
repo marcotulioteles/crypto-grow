@@ -26,17 +26,17 @@ export function CurrencyInfoProvider({ children }: CurrencyInfoProviderProps) {
       const date = new Date();
       const dateDolarApi = getFormattedDate(date)
       
-      console.log(date.getDay())
+      // console.log(date.getDay())
 
       try {
         bitcoinApi.get('BTC/ticker/').then(response => {
           setBitcoinPrice(parseFloat(response.data.ticker.buy))
-          console.log(parseFloat(response.data.ticker.buy))
+          // console.log(parseFloat(response.data.ticker.buy))
         })
     
         dolarApi.get(`CotacaoDolarDia(dataCotacao='${dateDolarApi}')`).then(response => {
           setDolar(response.data.value[0].cotacaoCompra)
-          console.log(response.data.value[0].cotacaoCompra)
+          // console.log(response.data.value[0].cotacaoCompra)
         })
 
       } catch (error) {

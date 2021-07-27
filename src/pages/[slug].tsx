@@ -12,9 +12,11 @@ import { TableTransactions } from "../components/TableTransactions";
 
 import { useSelector } from "react-redux";
 import { IState } from "../store";
+import { useCurrencyInfo } from "../contexts/CurrencyInfoContext";
 
 export default function UserPanel() {
   const myWallet = useSelector<IState>(state => state.wallet.coins)
+  const { bitcoinPrice, dolar } = useCurrencyInfo()
 
   const { asPath } = useRouter()
 
@@ -34,7 +36,10 @@ export default function UserPanel() {
         <Flex
           width={{ base: "100%", xl: "1200px"}}
           height="auto"
-          justifyContent={{ base: "center", xl: "left" }}
+          flexDirection={{ base: "column", lg: "row" }}
+          justifyContent={{ base: "center", lg: "space-between" }}
+          alignItems="center"
+          marginTop={{ base: "180px", lg: "0" }}
         >
           <Flex
             width="280px"
@@ -52,7 +57,47 @@ export default function UserPanel() {
               fontSize="1.25rem"
               fontWeight="normal"
               textAlign="center"
+              marginBottom="28px"
             >YOUR BALLANCE <br/>ACCOUNT</Text>
+            <Flex
+              width="240px"
+              height="40px"
+              borderRadius="20px"
+              backgroundColor="gray.900"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Text
+                color="green.400"
+                fontSize="1.125rem"
+              >R$ {myWallet[2].amount.toFixed(2)}</Text>
+            </Flex>
+          </Flex>
+          <Flex
+            width="280px"
+            height="180px"
+            border="1px solid"
+            borderColor="purple.300"
+            borderRadius="12px"
+            marginTop="32px"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Flex
+              width="240px"
+              height="40px"
+              borderRadius="20px"
+              backgroundColor="gray.900"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Text
+                color="green.400"
+                fontSize="1rem"
+                paddingX="12px"
+              ><span style={{color: "white"}}>Cotação Dolar:</span> {dolar}</Text>
+            </Flex>
             <Flex
               width="240px"
               height="40px"
@@ -64,8 +109,9 @@ export default function UserPanel() {
             >
               <Text
                 color="green.400"
-                fontSize="1.125rem"
-              >R$ {myWallet[2].amount.toFixed(2)}</Text>
+                fontSize="1rem"
+                paddingX="12px"
+              ><span style={{color: "white"}}>Bitcoin:</span> R$ {bitcoinPrice.toFixed(2)}</Text>
             </Flex>
           </Flex>
         </Flex>

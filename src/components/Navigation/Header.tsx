@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react'
-import { DrawerNavSideBar } from './DrawerNavSideBar';
 import { Logo } from './Logo';
+import { NavBar } from './NavBar';
 
 export function Header() {
  
@@ -18,7 +18,7 @@ export function Header() {
         logoColor="orange.400"
         __marginTop=""
       />
-        <DrawerNavSideBar />
+        <NavBar />
     </Flex>
   );
 }

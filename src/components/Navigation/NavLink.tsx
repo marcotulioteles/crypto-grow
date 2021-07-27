@@ -41,7 +41,7 @@ export function NavLink(
         display="flex" 
         alignItems="center"
         justifyContent="center"
-        paddingX={{ base: "121px", lg: "24px" }}
+        paddingX={{ base: "80px", sm: "96px", lg: "24px" }}
         paddingY={{ base: "24px", lg: "inherit" }}
         {...rest}
       >
