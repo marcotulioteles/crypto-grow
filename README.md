@@ -37,7 +37,7 @@ yarn
 - To run this project on your localhost, tap this on terminal:
 
 ```bash
-yarn start
+yarn dev
 ```
 
 🏄🏻 Now you can navigate on it. Have fun!
