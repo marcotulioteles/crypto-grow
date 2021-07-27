@@ -107,7 +107,8 @@ export function ExchangePanel() {
                 withdraw: bitcoinToBritaValue,
               })
           }}
-          children={<Input
+        >
+          <Input
             placeholder="BTC"
             type="number"
             color="white"
@@ -115,8 +116,8 @@ export function ExchangePanel() {
             onChange={event => { 
               setBitcoinToBritaValue(parseFloat(event.target.value)) 
             }}
-          />}
-        />
+          />
+        </FormTransactions>
         <FormTransactions
           name="EXCHANGE BRITA TO BITCOIN"
           placeholder="BRI"
@@ -146,7 +147,8 @@ export function ExchangePanel() {
               withdraw: britaToBitcoinValue,
             })
           }}
-          children={<Input
+        >
+          <Input
             placeholder="BRI"
             type="number"
             color="white"
@@ -154,8 +156,8 @@ export function ExchangePanel() {
             onChange={event => { 
               setBritaToBitcoinValue(parseFloat(event.target.value)) 
             }}
-          />}
-        />
+          />
+        </FormTransactions>
         <FormTransactions
           name="SALE BITCOIN"
           placeholder="BTC"
@@ -185,14 +187,15 @@ export function ExchangePanel() {
               withdraw: bitcoinSaleValue,
             })
           }}
-          children={<Input
+        >
+          <Input
             placeholder="BTC"
             type="number"
             color="white"
             width="120px"
             onChange={event => { setBitcoinSaleValue(parseFloat(event.target.value)) }}
-          />}
-        />
+          />
+        </FormTransactions>
         <FormTransactions
           name="SALE BRITA"
           placeholder="BRI"
@@ -222,14 +225,15 @@ export function ExchangePanel() {
               withdraw: britaSaleValue,
             })
           }}
-          children={<Input
+        >
+          <Input
             placeholder="BRI"
             type="number"
             color="white"
             width="120px"
             onChange={event => { setBritaSaleValue(parseFloat(event.target.value)) }}
-          />}
-        />
+          />
+        </FormTransactions>
         <FormTransactions
           name="BUY BITCOIN"
           placeholder="R$"
@@ -259,14 +263,15 @@ export function ExchangePanel() {
               withdraw: buyBitcoinValue,
             })
           }}
-          children={<Input
+        >
+          <Input
             placeholder="R$"
             type="number"
             color="white"
             width="120px"
             onChange={event => { setBuyBitcoinValue(parseFloat(event.target.value)) }}
-          />}
-        />
+          />
+        </FormTransactions>
         <FormTransactions
           name="BUY BRITA"
           placeholder="R$"
@@ -296,14 +301,15 @@ export function ExchangePanel() {
               withdraw: buyBritaValue,
             })
           }}
-          children={<Input
+        >
+          <Input
             placeholder="R$"
             type="number"
             color="white"
             width="120px"
             onChange={event => { setBuyBritaValue(parseFloat(event.target.value)) }}
-          />}
-        />
+          />
+        </FormTransactions>
       </Flex>
     </Flex>
   )
