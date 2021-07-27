@@ -25,9 +25,6 @@ export function ExchangePanel() {
   const [buyBritaValue, setBuyBritaValue] = useState(0);
   const [buyBitcoinValue, setBuyBitcoinValue] = useState(0);
 
-  const [transactionError, setTransactionError] = useState(false)
-  const [transactionErrorMessage, setTransactionErrorMessage] = useState("")
-
   const { bitcoinPrice, dolar } = useCurrencyInfo()
 
   const handleReset = () => {

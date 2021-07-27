@@ -37,6 +37,7 @@ export function CurrencyInfoProvider({ children }: CurrencyInfoProviderProps) {
         dolarApi.get(`CotacaoDolarDia(dataCotacao='${dateDolarApi}')`).then(response => {
           setDolar(response.data.value[0].cotacaoCompra)
           // console.log(response.data.value[0].cotacaoCompra)
+          // console.log(dateDolarApi)
         })
 
       } catch (error) {

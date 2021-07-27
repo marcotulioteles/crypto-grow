@@ -12,7 +12,7 @@ export function getFormattedDate(date: Date) {
   if (dayOfTheWeek == 0) {
     const dayParse = parseInt(day) - 2
     day = day.length > 1 ? dayParse.toString() : '0' + dayParse.toString();
-  } else if (dayOfTheWeek == 6 || currentHour <= 10) {
+  } else if (dayOfTheWeek == 6 || currentHour <= 18) {
     const dayParse = parseInt(day) - 1
     day = day.length > 1 ? dayParse.toString() : '0' + dayParse.toString();
   } else {
