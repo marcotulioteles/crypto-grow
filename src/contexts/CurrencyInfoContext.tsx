@@ -1,6 +1,7 @@
 import { ReactNode, useEffect, createContext, useContext, useState } from "react";
 
 import { bitcoinApi, dolarApi } from "../services/api";
+import { getFormattedDate } from "../utils/Functions";
 
 interface CurrencyInfoProviderProps {
   children: ReactNode;
@@ -21,16 +22,23 @@ export function CurrencyInfoProvider({ children }: CurrencyInfoProviderProps) {
   useEffect(() => {
     async function loadCurrencies() {
       setLoading(true)
+
+      const date = new Date();
+      const dateDolarApi = getFormattedDate(date)
+      
+      console.log(date.getDay())
+
       try {
         bitcoinApi.get('BTC/ticker/').then(response => {
           setBitcoinPrice(parseFloat(response.data.ticker.buy))
           console.log(parseFloat(response.data.ticker.buy))
         })
     
-        dolarApi.get("CotacaoDolarDia(dataCotacao='07-23-2021')").then(response => {
+        dolarApi.get(`CotacaoDolarDia(dataCotacao='${dateDolarApi}')`).then(response => {
           setDolar(response.data.value[0].cotacaoCompra)
           console.log(response.data.value[0].cotacaoCompra)
         })
+
       } catch (error) {
         console.error(error)
       } finally {

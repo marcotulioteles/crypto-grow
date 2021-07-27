@@ -1,13 +1,13 @@
 import { Flex, Text } from "@chakra-ui/react";
-import { useRouter } from "next/dist/client/router";
+import  { useRouter } from "next/router";
 
 import { FaBitcoin } from "react-icons/fa";
 
 import { CardCoins } from "../components/CardCoins";
 import { ExchangePanel } from "../components/ExchangePanel";
-import { Header } from "../components/Header";
+import { Header } from "../components/Navigation/Header";
 import { Panel } from "../components/Panel";
-import { Sidebar } from "../components/Sidebar";
+import { SidebarNav } from "../components/Sidebar/SidebarNav";
 import { TableTransactions } from "../components/TableTransactions";
 
 import { useSelector } from "react-redux";
@@ -17,6 +17,7 @@ export default function UserPanel() {
   const myWallet = useSelector<IState>(state => state.wallet.coins)
 
   const { asPath } = useRouter()
+
   return (
     <>
       <Header />
@@ -27,10 +28,13 @@ export default function UserPanel() {
         alignItems="center"
         justifyContent="center"
         flexDirection="column"
+        marginTop={{ base:"120px", xl: "0" }}
+        marginBottom={{ base:"120px", xl: "0" }}
       >
         <Flex
-          width="1200px"
+          width={{ base: "100%", xl: "1200px"}}
           height="auto"
+          justifyContent={{ base: "center", xl: "left" }}
         >
           <Flex
             width="280px"
@@ -66,19 +70,18 @@ export default function UserPanel() {
           </Flex>
         </Flex>
         <Flex
-          width="1200px"
+          width={{ base: "100%", xl: "1200px" }}
           height="calc(100vh - 100px)"
-          alignItems="center"
-          justifyContent="space-between"
+          alignItems={{ base: "center", lg: "center" }}
+          justifyContent={{base: "space-between", lg:"space-between"}}
+          flexDirection={{ base: "column", xl: "row" }}
         >
-          <Sidebar />
+          <SidebarNav />
           <Panel title={asPath.split('-')[asPath.split('-').length - 1].replace(/_/g, ' ').toUpperCase()}>
             {( (asPath === "/userpanel-wallet") ?
               <>
                 <CardCoins
                   icon={FaBitcoin}
-                  _marginTop="56px"
-                  _marginLeft="105px"
                   amount={myWallet[0].amount.toFixed(6)}
                   brand={myWallet[0].name}
                   letters_brand={myWallet[0].brand}
@@ -86,7 +89,6 @@ export default function UserPanel() {
                 />
                 <CardCoins
                   icon={FaBitcoin}
-                  _marginTop="284px"
                   amount={myWallet[1].amount.toFixed(6)}
                   brand={myWallet[1].name}
                   letters_brand={myWallet[1].brand}

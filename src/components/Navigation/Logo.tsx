@@ -11,6 +11,7 @@ export function Logo({ logoColor, __marginTop }: LogoProps) {
     <Flex
       alignItems="center"
       marginTop={__marginTop}
+      flexDirection={{ base: "column", md: "row" }}
     >
       <Icon
         as={FaBitcoin}
@@ -20,7 +21,7 @@ export function Logo({ logoColor, __marginTop }: LogoProps) {
       />
       <Text
         as="h1"
-        fontSize="2rem"
+        fontSize={{ base: "1.5rem", md: "2rem"}}
         fontWeight="semibold"
         color="purple.400"
         marginLeft="1rem"

@@ -2,9 +2,9 @@ import React, { useRef, useState } from "react";
 import { Flex, Text, Button } from "@chakra-ui/react";
 import { FiMail, FiLock } from "react-icons/fi"
 
-import { Header } from "../components/Header";
+import { Header } from "../components/Navigation/Header";
 import { CustomizedInput } from "../components/Form/Input";
-import { Logo } from "../components/Logo";
+import { Logo } from "../components/Navigation/Logo";
 import { auth } from "../firebase/firebaseSetup";
 import Router from "next/router";
 
@@ -26,6 +26,7 @@ export default function SignIn() {
       );
       alert(`Welcome back! ${user.user.email}`);
       localStorage.setItem("@cryptoGrow:userUID", JSON.stringify(user.user.uid))
+      localStorage.setItem("@cryptoGrow:userEmail", JSON.stringify(user.user.email))
       Router.push("/userpanel-wallet")
     } catch (error) {
       setError('Failed to log in')
@@ -45,7 +46,7 @@ export default function SignIn() {
         height="calc(100vh - 100px)"
       >
         <Flex
-          width="420px"
+          width={{ base: "95%", sm: "420px" }}
           height="600px"
           backgroundColor="gray.900"
           borderRadius="1.125rem"
@@ -88,7 +89,7 @@ export default function SignIn() {
             />
             <Button
               type='submit'
-              width="320px"
+              width={{ base: "90%", lg: "320px"}}
               height="72px"
               fontSize="1.5rem"
               borderRadius="36px"

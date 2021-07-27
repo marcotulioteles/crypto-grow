@@ -10,7 +10,7 @@ interface FormTransactionProps {
 
 export function FormTransactions({ name, children, onClickFunction }: FormTransactionProps) {
   return (
-    <Flex flexDirection="column" width="100%">
+    <Flex flexDirection="column" width="100%" textAlign={{base: "center", lg: "inherit"}}>
       <Text>{name}</Text>
       <Flex
         marginTop="0.5rem"

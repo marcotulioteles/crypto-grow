@@ -25,7 +25,7 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> =
       >
         <Flex
           as="label"
-          width={__width}
+          width={{ base: "90%", lg: `${__width}` }}
           height={__height}
           backgroundColor="gray.700"
           borderRadius="12px"

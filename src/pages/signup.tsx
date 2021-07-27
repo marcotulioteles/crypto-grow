@@ -6,7 +6,7 @@ import { FiUser, FiMail, FiLock } from "react-icons/fi"
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup'
 
-import { Header } from "../components/Header";
+import { Header } from "../components/Navigation/Header";
 import { CustomizedInput } from "../components/Form/Input";
 import { auth } from "../firebase/firebaseSetup";
 import Router from "next/router";
@@ -33,22 +33,6 @@ export default function SignUp() {
   const passwordRef = useRef<HTMLInputElement>(null)
   const retypePasswordRef = useRef<HTMLInputElement>(null)
 
-  // const signUp = async (event: React.FormEvent<HTMLFormElement>) => {
-  //   // event.preventDefault();
-
-  //   try {
-  //     if (firebaseInstance) {
-  //       const user = await firebaseInstance
-  //         .auth()
-  //         .createUserWithEmailAndPassword(emailRef.current.value, passwordRef.current.value);
-  //       console.log("user", user);
-  //       alert(`Sign Up ${emailRef.current.value} successful!`);
-  //     }
-  //   } catch (error) {
-  //     console.log("error", error);
-  //     alert(error.message);
-  //   }
-  // };
 
   const signUp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -87,12 +71,13 @@ export default function SignUp() {
           }}
         >
           <Flex
-            width="420px"
+            width={{ base: "95%", sm: "420px" }}
             height="736px"
             backgroundColor="gray.900"
             borderRadius="1.125rem"
             flexDirection="column"
             alignItems="center"
+            marginTop="42px"
           >
             <Text
               fontSize="2rem"
@@ -161,7 +146,7 @@ export default function SignUp() {
             />
             <Button
               type='submit'
-              width="320px"
+              width={{base: "95%", lg: "320px"}}
               height="72px"
               fontSize="1.5rem"
               borderRadius="36px"

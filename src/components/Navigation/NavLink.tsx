@@ -40,12 +40,19 @@ export function NavLink(
     >
       <ChakraLink 
         display="flex" 
-        alignItems="center" 
-        paddingX={6} 
+        alignItems="center"
+        justifyContent="center"
+        paddingX={{ base: "121px", lg: "24px" }}
+        paddingY={{ base: "24px", lg: "inherit" }}
         {...rest}
       >
         { icon ? <Icon as={icon} fontSize="1.625rem"/> : "" }
-        <Text marginLeft={icon ? "4" : ""} fontWeight="medium" letterSpacing="5%">
+        <Text 
+          marginLeft={icon ? "4" : ""} 
+          fontWeight="medium" 
+          letterSpacing="5%"
+          textAlign="center"
+        >
           { children }
         </Text>
       </ChakraLink>

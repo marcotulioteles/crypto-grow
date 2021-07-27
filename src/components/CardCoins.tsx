@@ -15,14 +15,13 @@ interface CardCoinsProps {
 export function CardCoins({ icon, _marginLeft, _marginTop, amount, brand, letters_brand, _bgColor}: CardCoinsProps) {
    return (
     <Flex
-      width="320px"
+      width={{base:"95%", lg: "320px"}}
       height="160px"
       backgroundColor={_bgColor}
       borderRadius="16px"
       flexDirection="column"
       position="relative"
-      marginTop={_marginTop}
-      marginLeft={_marginLeft}
+      marginY={{ base: "36px", lg: "0" }}
     >
       <Icon
         as={icon}

@@ -1,11 +1,12 @@
 import { Flex } from "@chakra-ui/react";
-import { NavLink } from "../NavLink";
+import { NavLink } from "../Navigation/NavLink";
 import { FiDollarSign, FiActivity, FiBarChart2, FiSettings } from 'react-icons/fi'
 
 export function SidebarNav() {
   return(
     <Flex
       flexDirection="column"
+      paddingY={{ base:"36px", lg:"0" }}
     >
       <NavLink 
         href="/userpanel-wallet" 

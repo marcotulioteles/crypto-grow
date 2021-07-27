@@ -17,20 +17,26 @@ export function Panel({ title, children }: PanelProps) {
   return (
     <Flex
       flexDirection="column"
+      width="100%"
+      alignItems={{ base: "center", lg:"inherit" }}
     >
       <Text
-        fontSize="3rem"
+        fontSize={{ base: "2.25rem", lg: "3rem" }}
         color="white"
         letterSpacing="0.15rem"
+        textAlign={{ base: "center", lg: "left" }}
       >
         { title }
       </Text>
       <Flex
-        width="850px"
-        height="500px"
+        width={{ base:"95%" , lg: "850px" }}
+        height={{ base:"auto", lg: "500px" }}
         backgroundColor="gray.900"
         borderRadius="18px"
         overflowY={(myTransactions.length > 8 && asPath === "/userpanel-transactions") ? "scroll" : "inherit"}
+        flexDirection={{ base: "column", lg: "row" }}
+        alignItems={{ base: "center", lg:"center" }}
+        justifyContent={{ base: "center", lg:"space-around" }}
         css={{
           '&::-webkit-scrollbar': {
             width: '0.55rem',

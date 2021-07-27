@@ -49,10 +49,13 @@ export function ExchangePanel() {
       width="100%"
       height="100%"
       justifyContent="space-around"
+      flexDirection={{base: "column", lg: "row"}}
     >
       <Flex
         flexDirection="column"
         justifyContent="space-around"
+        alignItems="center"
+        height="480px"
       >
         <CardCoins
           icon={FaBitcoin}
@@ -73,7 +76,7 @@ export function ExchangePanel() {
         flexDirection="column"
         justifyContent="space-around"
         alignItems="center"
-        width="320px"
+        width={{base:"95%", lg: "320px"}}
       >
         <FormTransactions
           name="EXCHANGE BITCOIN TO BRITA"
