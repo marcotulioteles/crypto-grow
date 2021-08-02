@@ -23,10 +23,23 @@ export function CurrencyInfoProvider({ children }: CurrencyInfoProviderProps) {
     async function loadCurrencies() {
       setLoading(true)
 
-      const date = new Date();
+      let date = new Date();
+      const dayOfTheWeek = date.getDay()
+      const currentHour = date.getHours()
+
+      if (dayOfTheWeek === 1 && currentHour <= 13) {
+        date = new Date(Date.now() - (72 * 60 * 60 * 1000))
+      } else if (dayOfTheWeek === 0) {
+        date = new Date(Date.now() - (48 * 60 * 60 * 1000))  
+      } else if (dayOfTheWeek === 6) {
+        date = new Date(Date.now() - (24 * 60 * 60 * 1000))
+      } else {
+        return date;
+      }
+
       const dateDolarApi = getFormattedDate(date)
       
-      // console.log(date.getDay())
+      // console.log(dateDolarApi)
 
       try {
         bitcoinApi.get('BTC/ticker/').then(response => {
