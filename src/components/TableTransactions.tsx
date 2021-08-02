@@ -14,7 +14,7 @@ export function TableTransactions() {
       variant="unstyled"
       width="90%"
       size="sm"
-      margin="24px"
+      margin="0 auto"
     >
       <Thead>
         <Tr color="white">
