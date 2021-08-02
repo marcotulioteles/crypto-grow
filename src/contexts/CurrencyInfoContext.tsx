@@ -29,17 +29,19 @@ export function CurrencyInfoProvider({ children }: CurrencyInfoProviderProps) {
 
       if (dayOfTheWeek === 1 && currentHour <= 13) {
         date = new Date(Date.now() - (72 * 60 * 60 * 1000))
-      } else if (dayOfTheWeek === 0) {
-        date = new Date(Date.now() - (48 * 60 * 60 * 1000))  
-      } else if (dayOfTheWeek === 6) {
-        date = new Date(Date.now() - (24 * 60 * 60 * 1000))
-      } else {
-        return date;
       }
-
+      
+      if (dayOfTheWeek === 0) {
+        date = new Date(Date.now() - (48 * 60 * 60 * 1000))  
+      } 
+      
+      if (dayOfTheWeek === 6) {
+        date = new Date(Date.now() - (24 * 60 * 60 * 1000))
+      }
+      
       const dateDolarApi = getFormattedDate(date)
       
-      // console.log(dateDolarApi)
+      console.log(dateDolarApi)
 
       try {
         bitcoinApi.get('BTC/ticker/').then(response => {
