@@ -27,14 +27,22 @@ export function CurrencyInfoProvider({ children }: CurrencyInfoProviderProps) {
       const dayOfTheWeek = date.getDay()
       const currentHour = date.getHours()
 
+      // Pick the dollar quotation date up from the last day until 13:59 (current Day)
+      if (dayOfTheWeek > 1 && dayOfTheWeek < 6 && currentHour <= 13) {
+        date = new Date(Date.now() - (24 * 60 * 60 * 1000))
+      }
+
+      // if is Monday before 13:59 pick the dollar quotation date up from Friday
       if (dayOfTheWeek === 1 && currentHour <= 13) {
         date = new Date(Date.now() - (72 * 60 * 60 * 1000))
       }
       
+      // if is Sunday pick the dollar quotation date up from Friday
       if (dayOfTheWeek === 0) {
         date = new Date(Date.now() - (48 * 60 * 60 * 1000))  
-      } 
-      
+      }
+
+      // if is Saturday pick the dollar quotation date up from Friday
       if (dayOfTheWeek === 6) {
         date = new Date(Date.now() - (24 * 60 * 60 * 1000))
       }
